@@ -1,6 +1,10 @@
 package ua.lv.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import java.io.File;
+import java.io.IOException;
 
 @Entity
 public class Work {
@@ -34,8 +38,15 @@ public class Work {
         return workImg;
     }
 
-    public void setWorkImg(String workImg) {
-        this.workImg = workImg;
+    public void setWorkImg(MultipartFile multipartFile) {
+        String path = System.getProperty("user.home") + File.separator + "Pictures\\";
+        try {
+            multipartFile.transferTo(new File(path + multipartFile.getOriginalFilename()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.workImg = "\\workImg\\" + multipartFile.getOriginalFilename();
+
     }
 
     public String getWorkName() {
