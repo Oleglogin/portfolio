@@ -26,8 +26,6 @@ public class AccountController {
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
         model.addAttribute("emptyAccount",new Account());
-        model.addAttribute("usersList",userService.listUsers());
-        model.addAttribute("accountList", accountService.listAccount());
         return "account";
     }
 

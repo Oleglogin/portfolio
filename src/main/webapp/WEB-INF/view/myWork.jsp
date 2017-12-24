@@ -4,59 +4,65 @@
 <div class="container-fluid" style="background: gainsboro">
     hello ${currentUser.username}
     id ${currentUser.id}
-    ${account.currentUser.id}
-
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
 
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-xl-3">
-
-            <div class="container">
-
+        <div class="col-xs-12  col-xl-2">
+            <div class="container align-items-center pt-5">
+                <c:if test="${countAcc < 1}">
                     <a href="account">Tell about self</a>
-
-            </div>
-
+                </c:if>
                 <c:forEach items="${accountList}" var="account">
-
                     <c:if test="${currentUser.id == account.user.id}">
                         <div class="container">
-                            <img src="${account.avatar}"width="100" height="100" class="rounded-circle" alt="">
-                        </div>
-
-                        <div class="container">
-                                ${account.user.username}
+                            <img src="${account.avatar}"width="180" height="180"  alt="">
                         </div>
                         <div class="container">
+                            <h2>${account.user.username}</h2>
+                        </div>
+                        <div class="container">
+                            <h2>
                                 ${account.firstName}
                                 ${account.lastName}
+                            </h2>
+
                         </div>
                         <div class="container">
+                            <h2>
                                 ${account.country}
-                            ${account.city}
+                                ${account.city}
+                            </h2>
+
                         </div>
                         <div class="container">
+                            <h2>
                                 ${account.category}
+                            </h2>
+
                         </div>
                         <div class="container">
-                            <%--<a href="<c:url value='/editAccount/${account.id}'/>">Edit</a>--%>
-                            <a href="/editAccount/${account.id}" target="_blank">Edit</a>
+                            <h2><a href="/editAccount/${account.id}" target="_blank">Edit</a></h2>
                         </div>
-
-
                     </c:if>
                 </c:forEach>
+            </div>
         </div>
 
-        <div class="col-xl-9">
-            <div class=" color-rect-border">
-                <div class="row">
+        <div class="col-xs-12  col-xl-10">
+            <div class="container">
+                <div class="row align-items-center pt-5">
                     <c:forEach items="${workList}" var="work">
                         <c:if test="${currentUser.id == work.user.id}">
-                            <div class="col-md-3" >
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3" >
+                                ${work.workName}
                                 <img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail "/>
+
                                 <a href="<c:url value='/workRemove/${work.id}'/>">Delete</a>
                                 <a href="<c:url value='/workEdit/${work.id}'/>">Edit</a>
                                 <br>
@@ -65,25 +71,25 @@
                             </div>
                         </c:if>
                     </c:forEach>
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3">
+                        <c:url value="/work/add" var="addWork"/>
+                        <form:form action="${addWork}"  modelAttribute="emptyWork" enctype="multipart/form-data">
+                            <form:input path="workName"/>
+                            <form:select path="category">
+                                <option>Architecture</option>
+                                <option>Design</option>
+                                <option>3D Model</option>
+                            </form:select>
+                            <input type="file" name="workImg" formenctype="multipart/form-data">
+                            <input type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>
+                            <form:input type="hidden" path="id" readonly="true"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form:form>
+                    </div>
                 </div>
-
-            </div>
-            <c:url value="/work/add" var="addWork"/>
-            <div class="container-fluid color-rect-border">
-                <form:form action="${addWork}"  modelAttribute="emptyWork" enctype="multipart/form-data">
-                    <form:input path="id" readonly="true"/>
-                    <form:input path="workName"/>
-                    <form:select path="category">
-                        <option>Architecture</option>
-                        <option>Design</option>
-                        <option>3D Model</option>
-                    </form:select>
-                    <input type="file" name="workImg" formenctype="multipart/form-data">
-                    <input type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                </form:form>
             </div>
         </div>
+
     </div>
 </div>
 

@@ -31,7 +31,6 @@ public class WorkController {
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-//        model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
         return "/work";
     }
@@ -82,17 +81,15 @@ public class WorkController {
     public String myWorks(Model model, Principal principal){
         String principalName = principal.getName();
         User byUserName= userService.findByUserName(principalName);
-
         model.addAttribute("accountList", accountService.listAccount());
-//        model.addAttribute("usersList",userService.listUsers());
-//        model.addAttribute("emptyAccount",new Account());
-
         model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
-        
+        model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
         return "myWork";
     }
+
+
 
 
 }

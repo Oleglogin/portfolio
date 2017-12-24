@@ -15,19 +15,16 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
-    @Autowired
-    UserService userService;
+
     @Autowired
     WorkService workService;
 
-    @GetMapping("/index")
-    public String toIndex(){
-        return "/index";
-    }
+
 
     @GetMapping("/")
-    public String toWorkPage(){
-        return "index";
+    public String toWorkPage( Model model){
+        model.addAttribute("workList", workService.workList());
+        return "work";
     }
 
 
