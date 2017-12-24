@@ -4,47 +4,47 @@
 <%@include file="tmp/header.jsp"%>
 <div class="container">
     hello ${currentUser.username} id ${currentUser.id}
-    <c:if test="${!empty usersList}">
-        <table class="table">
-            <tr>
-                <td>ID</td>
-                <td>Login</td>
-                <td>Password</td>
-                <td>Email</td>
-                <td>Delete</td>
-                <td>Edit</td>
-            </tr>
-            <c:forEach items="${usersList}" var="user">
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.username}</td>
-                    <td>${user.password}</td>
-                    <td>${user.email}</td>
-                    <td><a href="<c:url value='/userRemove/${user.id}'/>">Delete</a></td>
-                    <td><a href="<c:url value='/userEdit/${user.id}'/>">Edit</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:if>
-    <br>
-    <br>
-    <br>
+    <%--<c:if test="${!empty usersList}">--%>
+        <%--<table class="table">--%>
+            <%--<tr>--%>
+                <%--<td>ID</td>--%>
+                <%--<td>Login</td>--%>
+                <%--<td>Password</td>--%>
+                <%--<td>Email</td>--%>
+                <%--<td>Delete</td>--%>
+                <%--<td>Edit</td>--%>
+            <%--</tr>--%>
+            <%--<c:forEach items="${usersList}" var="user">--%>
+                <%--<tr>--%>
+                    <%--<td>${user.id}</td>--%>
+                    <%--<td>${user.username}</td>--%>
+                    <%--<td>${user.password}</td>--%>
+                    <%--<td>${user.email}</td>--%>
+                    <%--<td><a href="<c:url value='/userRemove/${user.id}'/>">Delete</a></td>--%>
+                    <%--<td><a href="<c:url value='/userEdit/${user.id}'/>">Edit</a></td>--%>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+        <%--</table>--%>
+    <%--</c:if>--%>
+    <%--<br>--%>
+    <%--<br>--%>
+    <%--<br>--%>
 
 
-    <table class="table">
-        <tr>
-            <td>ID</td>
-            <td>First Name</td>
-            <td>Last Name</td>
-            <td>country</td>
-            <td>city</td>
-            <td>ava</td>
-            <td>category</td>
-            <td>user</td>
-            <td>Edit</td>
-        </tr>
+    <%--<table class="table">--%>
+        <%--<tr>--%>
+            <%--<td>ID</td>--%>
+            <%--<td>First Name</td>--%>
+            <%--<td>Last Name</td>--%>
+            <%--<td>country</td>--%>
+            <%--<td>city</td>--%>
+            <%--<td>ava</td>--%>
+            <%--<td>category</td>--%>
+            <%--<td>user</td>--%>
+            <%--<td>Edit</td>--%>
+        <%--</tr>--%>
         <c:forEach items="${accountList}" var="account">
-            <c:if test="${currentUser.id == account.id}">
+            <c:if test="${currentUser.id == account.user.id}">
                 <tr>
                     <td>${account.id}</td>
                     <td>${account.firstName}</td>
@@ -59,11 +59,14 @@
             </c:if>
 
         </c:forEach>
-    </table>
-    <br>
-    <br>
-    <br>
-    <form:form modelAttribute="emptyAccount" action="saveAccount" method="post" enctype="multipart/form-data">
+    <%--</table>--%>
+    <%--<br>--%>
+    <%--<br>--%>
+    <%--<br>--%>
+    <c:url value="/saveAccount" var="addAcc"/>
+
+    <form:form modelAttribute="emptyAccount" action="${addAcc}" method="post" enctype="multipart/form-data">
+        <form:input type="text" path="id" placeholder="id" readonly="true"/>
         <form:input type="text" path="firstName" placeholder="Enter first name"/>
         <form:input type="text" path="lastName"  placeholder="Enter last name"/>
         <form:input type="text" path="country"  placeholder="Enter country"/>

@@ -42,8 +42,19 @@ public class AccountController {
         model.addAttribute("currentUser", byUsername);
         account.setUser(byUsername);
         accountService.addAccount(account);
-        return "redirect:/account";
+        return "redirect:/myWorks";
     }
+
+    @RequestMapping(value = "/editAccount/{id}")
+    public String editAcc(@PathVariable("id") int id, Model model, Principal principal){
+        String principalName = principal.getName();
+        User byUserName= userService.findByUserName(principalName);
+        model.addAttribute("currentUser",byUserName);
+        model.addAttribute("emptyAccount", accountService.getAccountById(id));
+        return "/account";
+    }
+
+
 
 
 
