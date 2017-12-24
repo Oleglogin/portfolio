@@ -4,6 +4,8 @@
 <div class="container-fluid" style="background: gainsboro">
     hello ${currentUser.username}
     id ${currentUser.id}
+    ${account.currentUser.id}
+
 </div>
 
 <div class="container-fluid">
@@ -12,10 +14,13 @@
         <div class="col-xl-3">
 
             <div class="container">
-                <a href="account">Tell about self</a>
+
+                    <a href="account">Tell about self</a>
+
             </div>
 
                 <c:forEach items="${accountList}" var="account">
+
                     <c:if test="${currentUser.id == account.user.id}">
                         <div class="container">
                             <img src="${account.avatar}"width="100" height="100" class="rounded-circle" alt="">
@@ -36,8 +41,11 @@
                                 ${account.category}
                         </div>
                         <div class="container">
-                            <a href="<c:url value='/editAccount/${account.id}'/>">Edit</a>
+                            <%--<a href="<c:url value='/editAccount/${account.id}'/>">Edit</a>--%>
+                            <a href="/editAccount/${account.id}" target="_blank">Edit</a>
                         </div>
+
+
                     </c:if>
                 </c:forEach>
         </div>

@@ -36,4 +36,11 @@ public class AccountServiceImpl implements AccountService {
         return accountDAO.findAll();
     }
 
+    public List<Account> userAcc(int id) {
+        return accountDAO.findUserAcc(id);
+    }
+
+    public int CountAccount(int id) {
+        return accountDAO.findAllCountAccount(id);
+    }
 }

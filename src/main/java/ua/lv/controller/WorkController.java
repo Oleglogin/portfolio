@@ -90,6 +90,7 @@ public class WorkController {
         model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
+        
         return "myWork";
     }
 

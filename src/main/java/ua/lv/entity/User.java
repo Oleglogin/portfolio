@@ -23,8 +23,9 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
-    private Account account;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
+    private List<Account> accounts;
+//    private Account account;
 
 
 
@@ -144,12 +145,12 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public Account getAccount() {
-        return account;
+    public List<Account> getAccounts() {
+        return accounts;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public void setAccountNonExpired(boolean accountNonExpired) {
@@ -163,7 +164,7 @@ public class User implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
-                ", account=" + account +
+                ", account=" + accounts +
                 ", works=" + works +
                 ", authority=" + authority +
                 ", accountNonExpired=" + accountNonExpired +

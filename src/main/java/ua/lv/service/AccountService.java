@@ -17,4 +17,7 @@ public interface AccountService {
     public Account getAccountById(int id);
 
     public List<Account> listAccount();
+    List <Account> userAcc(int id);
+
+    int CountAccount(int id);
 }

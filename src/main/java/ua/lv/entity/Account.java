@@ -21,7 +21,7 @@ public class Account {
     private String country;
     private String city;
     private String category;
-    @OneToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     private User user;
     public Account() {
     }
