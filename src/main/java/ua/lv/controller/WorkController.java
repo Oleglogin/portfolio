@@ -39,7 +39,7 @@ public class WorkController {
         model.addAttribute("currentUser", byUsername);
         work.setUser(byUsername);
         workService.addWork(work);
-        return "redirect:/work";
+        return "redirect:/myWorks";
     }
 
     @RequestMapping(value = "/workData/{id}", method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class WorkController {
     @RequestMapping(value = "/workRemove/{id}")
     public String removeWork(@PathVariable("id") int id){
         workService.removeWork(id);
-        return "redirect:/work";
+        return "redirect:/myWorks";
     }
 
     @RequestMapping(value = "/workEdit/{id}")
@@ -72,14 +72,14 @@ public class WorkController {
         model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", workService.getWorkById(id));
         model.addAttribute("workList", workService.workList());
-        return "work";
+        return "myWork";
     }
-    @RequestMapping(value = "myWorks/{id}")
-    public String myWorks(@PathVariable("id") int id, Model model, Principal principal){
+    @RequestMapping(value = "/myWorks")
+    public String myWorks(Model model, Principal principal){
         String principalName = principal.getName();
         User byUserName= userService.findByUserName(principalName);
         model.addAttribute("currentUser",byUserName);
-        model.addAttribute("emptyWork",workService.getWorkById(id));
+        model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
         return "myWork";
     }
