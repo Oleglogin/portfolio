@@ -1,5 +1,6 @@
 package ua.lv.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,12 +47,12 @@ public class WorkController {
         return "workData";
     }
 
-    @RequestMapping(value = "/userWork/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/userWork/", method = RequestMethod.GET)
     public String userWork(@PathVariable("id") int id, Model model,Principal principal){
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-        model.addAttribute("work",workService.getWorkById(id));
+        model.addAttribute("currentUser",userService.getUserById(id));
         model.addAttribute("workList",workService.workList());
         return "/userWork";
     }
@@ -64,10 +65,23 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/workEdit/{id}")
-    public String editWork(@PathVariable("id") int id, Model model){
-        model.addAttribute("workList", workService.workList());
+    public String editWork(@PathVariable("id") int id, Model model, Principal principal){
+        String principalName = principal.getName();
+        User byUserName= userService.findByUserName(principalName);
+        model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", workService.getWorkById(id));
-
+        model.addAttribute("workList", workService.workList());
         return "work";
     }
+    @RequestMapping(value = "myWorks/{id}")
+    public String myWorks(@PathVariable("id") int id, Model model, Principal principal){
+        String principalName = principal.getName();
+        User byUserName= userService.findByUserName(principalName);
+        model.addAttribute("currentUser",byUserName);
+        model.addAttribute("emptyWork",workService.getWorkById(id));
+        model.addAttribute("workList", workService.workList());
+        return "myWork";
+    }
+
+
 }

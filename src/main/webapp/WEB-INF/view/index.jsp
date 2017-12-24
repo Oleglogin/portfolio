@@ -5,6 +5,8 @@
     <a href="/login"> Sign in</a>
     <a href="/registration">Sign up</a>
     <a href="/admin">Admin</a>
+    <a href="/work">Work</a>
+    <a href="/category">Category</a>
 
     <a href="/logout"> Logout</a>
 
