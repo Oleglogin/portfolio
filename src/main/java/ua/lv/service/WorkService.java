@@ -10,4 +10,5 @@ public interface WorkService {
     void removeWork(int id);
     Work getWorkById(int id);
     List<Work> workList();
+    List<Work> userWork(int id);
 }

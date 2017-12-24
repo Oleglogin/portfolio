@@ -12,6 +12,7 @@ import ua.lv.service.WorkService;
 
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class WorkController {
@@ -47,13 +48,13 @@ public class WorkController {
         return "workData";
     }
 
-    @RequestMapping(value = "/userWork/", method = RequestMethod.GET)
+    @RequestMapping(value = "/userWork/{id}", method = RequestMethod.GET)
     public String userWork(@PathVariable("id") int id, Model model,Principal principal){
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-        model.addAttribute("currentUser",userService.getUserById(id));
-        model.addAttribute("workList",workService.workList());
+        model.addAttribute("emptyWork", new Work());
+        model.addAttribute("works", workService.userWork(id));
         return "/userWork";
     }
 

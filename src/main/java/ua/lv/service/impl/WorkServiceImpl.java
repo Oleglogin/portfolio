@@ -38,4 +38,8 @@ public class WorkServiceImpl implements WorkService {
     public List<Work> workList() {
         return workDAO.findAll();
     }
+
+    public List<Work> userWork(int id) {
+        return workDAO.findUserWork(id);
+    }
 }

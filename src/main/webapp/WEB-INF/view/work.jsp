@@ -13,7 +13,7 @@ hello <h2>${currentUser.id} <a href="myWorks/${emptyWork.id}" target="_blank">Sh
                     <a href="/workData/${work.id}"><img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail"/></a>
                     <div class="container">
                         <%--<h4><a href="/userWork/${work.id}" target="_blank">${work.user.username}</a></h4>--%>
-                        <h4><a href="/userWork/" target="_blank">${work.user.username}</a></h4>
+                        <h4><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a></h4>
                         <p>${work.category}</p>
                     </div>
                         <a href="<c:url value='/workRemove/${work.id}'/>">Delete</a>

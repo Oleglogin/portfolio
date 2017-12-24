@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="tmp/header.jsp"%>
-<%--hello${currentUser.username}--%>
-<%--hello${currentUser.id}--%>
+hello${currentUser.username}
+hello${currentUser.id}
 ${work.id} picture
 <%--${work.workTitle}--%>
 ${work.user.id} user
@@ -10,7 +10,7 @@ ${work.user.id} user
 <%= id_user%>
 
 
-        <c:forEach items="${workList}" var="work">
+        <c:forEach items="${works}" var="work">
             <div class="container-fluid col-md-3">
                 <div class="row">
                     <img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail "/>
