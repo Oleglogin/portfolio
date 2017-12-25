@@ -20,10 +20,6 @@ public class AccountServiceImpl implements AccountService {
         accountDAO.save(account);
     }
 
-    public void updateAccount(Account account) {
-        accountDAO.save(account);
-    }
-
     public void removeAccount(int id) {
         accountDAO.delete(id);
     }

@@ -10,8 +10,6 @@ import java.util.List;
 public interface AccountService {
     void addAccount(Account account);
 
-    void updateAccount(Account account);
-
     void removeAccount(int id);
 
     Account getAccountById(int id);

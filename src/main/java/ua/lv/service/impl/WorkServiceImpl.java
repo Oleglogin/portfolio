@@ -23,9 +23,6 @@ public class WorkServiceImpl implements WorkService {
         workDAO.save(work);
     }
 
-    public void updateWork(Work work) {
-        workDAO.save(work);
-    }
 
     public void removeWork(int id) {
         workDAO.delete(id);
@@ -43,7 +40,7 @@ public class WorkServiceImpl implements WorkService {
         return workDAO.findUserWork(id);
     }
 
-    public List<Work> workCategorys(String category) {
+    public List<Work> workCategory(String category) {
         return workDAO.categoryWorks(category);
     }
 

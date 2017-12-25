@@ -32,11 +32,9 @@ public class WorkController {
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
         model.addAttribute("workList", workService.workList());
-
         model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
-
         return "/work";
     }
 
@@ -61,7 +59,6 @@ public class WorkController {
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-//        model.addAttribute("emptyWork", new Work());
         model.addAttribute("works", workService.userWork(id));
         return "/userWork";
     }
@@ -80,6 +77,9 @@ public class WorkController {
         model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", workService.getWorkById(id));
         model.addAttribute("workList", workService.workList());
+        model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
+        model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
+        model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
         return "myWork";
     }
     @RequestMapping(value = "/myWorks")
@@ -91,26 +91,21 @@ public class WorkController {
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
         model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
-
-
-
         model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
         model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
         model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
-
-
         return "myWork";
     }
 
-    @RequestMapping(value = "/categoryList")
-    public String categoryList(Model model, Principal principal,@ModelAttribute("emptyWork") Work work){
+    @RequestMapping(value = "/categoryList/{category}")
+    public String categoryList(Model model, Principal principal,@PathVariable("category")String category){
         String principalName = principal.getName();
         User byUserName= userService.findByUserName(principalName);
         model.addAttribute("currentUser",byUserName);
-
-
-        model.addAttribute("workList",workService.workCategorys(work.getCategory()));
-
+        model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
+        model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
+        model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
+        model.addAttribute("workList",workService.workCategory(category));
         return "/work";
     }
 

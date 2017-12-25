@@ -25,11 +25,11 @@
     <div class="container-fluid">
             <div class="row">
                 <c:forEach items="${workList}" var="work">
-                    <div class="col-md-2" >
+                    <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2" >
                         <a href="/workData/${work.id}"><img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail"/></a>
                         <div class="container">
                             ${work.workName}
-                            <a href="/categoryList" target="_blank">${work.category}</a>
+                            <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
                         </div>
                         <h4><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a></h4>
                         <a href="<c:url value='/workLikes/${work.id}'/>">Like</a>
@@ -41,7 +41,7 @@
                     </div>
                 </c:forEach>
 
-                <div class="col-md-2">
+                <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2">
                     <canvas id="myChart"></canvas>
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
                     <script>
