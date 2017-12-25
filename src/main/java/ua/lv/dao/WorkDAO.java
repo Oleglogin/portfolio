@@ -13,4 +13,16 @@ import java.util.List;
 public interface WorkDAO extends JpaRepository<Work, Integer> {
     @Query("from Work work where work.user.id=:id")
     List<Work> findUserWork(@Param("id") int id);
+
+    @Query("select count(work.id)  from Work work where work.user.id=:userId and work.category=:category")
+    int findAllByCategoryIs(@Param("userId") int userId, @Param("category") String category);
+    @Query("select count(work.id)  from Work work where  work.category=:category")
+    int findAllByCategory(@Param("category") String category);
+
+
+
+
+    
+    @Query("from Work work where work.category=:category")
+    List<Work> categoryWorks(@Param("category") String category);
 }

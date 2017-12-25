@@ -42,4 +42,17 @@ public class WorkServiceImpl implements WorkService {
     public List<Work> userWork(int id) {
         return workDAO.findUserWork(id);
     }
+
+    public List<Work> workCategorys(String category) {
+        return workDAO.categoryWorks(category);
+    }
+
+
+    public int findAllByCategoryIs(int userId, String category) {
+        return workDAO.findAllByCategoryIs(userId,category);
+    }
+
+    public int findAllByCategory(String category) {
+        return workDAO.findAllByCategory(category);
+    }
 }

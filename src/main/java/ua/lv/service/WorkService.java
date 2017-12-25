@@ -11,4 +11,9 @@ public interface WorkService {
     Work getWorkById(int id);
     List<Work> workList();
     List<Work> userWork(int id);
+    List<Work> workCategorys(String category);
+
+
+    int findAllByCategoryIs(int userId, String category);
+    int findAllByCategory(String category);
 }

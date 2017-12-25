@@ -12,9 +12,8 @@ import java.util.List;
  */
 public interface AccountDAO extends JpaRepository<Account, Integer> {
 
-    @Query("from Account account where account.user.id=:id")
-    List<Account> findUserAcc(@Param("id") int id);
-
     @Query("select count (account.id) from Account account where account.user.id=:id")
     int findAllCountAccount(@Param("id") int id);
+
+
 }
