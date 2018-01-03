@@ -2,25 +2,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="tmp/header.jsp"%>
 
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">LoginStudio</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <c:if test="${!empty currentUser}">
-                        <a href="/myWorks">Discover</a>
-                    </c:if>
-                </li>
-                <li><a href="/registration">Sign up</a></li>
-                <li><a href="/login">Sign in</a></li>
-                <li><a href="/logout">Exit</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+
+
+<ul class="menu">
+    <li><a href="">LoginStudio</a></li>
+    <li><a href="">Company</a>
+        <ul>
+            <li><a href="">one</a></li>
+            <li><a href="">two</a></li>
+            <li><a href="">free</a></li>
+            <li><a href="">four</a></li>
+            <li><a href="">five</a></li>
+        </ul>
+    </li>
+    <li>
+        <c:if test="${!empty currentUser}">
+            <a href="/myWorks">Discover</a>
+        </c:if>
+    </li>
+    <li><a href="">Galery</a></li>
+    <li><a href="/registration">Sign up</a></li>
+    <li><a href="/login">Sign in</a></li>
+    <li><a href="/logout">Exit</a></li>
+</ul>
 
     <div class="container-fluid">
             <div class="row">
@@ -32,14 +36,13 @@
                             <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
                         </div>
                         <h4><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a></h4>
-                        <a href="<c:url value='/workLikes/${work.id}'/>">Like</a>
-                        <a href="<c:url value='/workDislikes/${work.id}'/>">Dislike</a>
                         <br>
                         <br>
                         <br>
                         <br>
                     </div>
                 </c:forEach>
+
 
                 <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2">
                     <canvas id="myChart"></canvas>

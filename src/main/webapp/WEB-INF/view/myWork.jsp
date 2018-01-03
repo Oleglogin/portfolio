@@ -13,7 +13,7 @@
         <div class="col-xs-12  col-xl-3">
             <div class="container align-items-center pt-5">
                 <c:if test="${countAcc < 1}">
-                    <a href="account">Tell about self</a>
+                   <h2><a href="account">Tell about self</a></h2>
                 </c:if>
                 <c:forEach items="${accountList}" var="account">
                     <c:if test="${currentUser.id == account.user.id}">
