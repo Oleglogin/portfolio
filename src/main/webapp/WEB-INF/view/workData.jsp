@@ -5,6 +5,7 @@ ${work.category}
 <div class="container-fluid col-md-9">
     <div class="row">
         <img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail "/>
+        <h2>${countRating}</h2>
     </div>
 </div>
 ${curentUser.username}

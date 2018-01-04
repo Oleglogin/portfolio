@@ -46,12 +46,12 @@
                                     <option>5</option>
                                     <option>10</option>
                                 </form:select>
-                                <input type="submit">
+                                <input type="submit" value=" ok ">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </c:if>
                         </form:form>
                         <%--<h1>${currentWork}</h1>--%>
-                        <%--<h2>${countRating}</h2>--%>
+                        <h2>${countRating}</h2>
                         <br>
                         <br>
                         <br>

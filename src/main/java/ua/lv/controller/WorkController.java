@@ -10,6 +10,7 @@ import ua.lv.entity.Rating;
 import ua.lv.entity.User;
 import ua.lv.entity.Work;
 import ua.lv.service.AccountService;
+import ua.lv.service.RatingService;
 import ua.lv.service.UserService;
 import ua.lv.service.WorkService;
 
@@ -26,6 +27,8 @@ public class WorkController {
     UserService userService;
     @Autowired
     AccountService accountService;
+    @Autowired
+    RatingService ratingService;
 
     @GetMapping(value = "/work")
     public String goWork(Model model, Principal principal){
@@ -51,8 +54,12 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/workData/{id}", method = RequestMethod.GET)
-    public String workData(@PathVariable("id") int id, Model model){
+    public String workData(@PathVariable("id") int id, Model model,@ModelAttribute("emptyRating") Rating rating){
         model.addAttribute("work", workService.getWorkById(id));
+        Work byWorkId = workService.getWorkById(id);
+        rating.setWork(byWorkId);
+        ratingService.addRating(rating);
+        model.addAttribute("countRating", ratingService.countRating(byWorkId.getId()));
         return "workData";
     }
 
