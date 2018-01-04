@@ -15,6 +15,7 @@ public interface WorkService {
 
     int findAllByCategoryIs(int userId, String category);
     int findAllByCategory(String category);
+    int findAllWorks();
 
 
 

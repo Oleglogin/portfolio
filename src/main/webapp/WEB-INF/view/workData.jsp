@@ -1,7 +1,7 @@
 <%@include file="tmp/header.jsp"%>
 <div style="background: gainsboro">
 <ul class="menu">
-    <li><a href="">LoginStudio</a></li>
+    <li><a href="/work">LoginStudio</a></li>
     <li><a href="">Company</a>
         <ul>
             <li><a href="">one</a></li>
@@ -13,10 +13,9 @@
     </li>
     <li>
         <c:if test="${!empty currentUser}">
-            <a href="/myWorks">Discover</a>
+            <a href="/myWorks">${currentUser.username} Discover</a>
         </c:if>
     </li>
-    <li><a href="/work">Main</a></li>
     <li><a href="/registration">Sign up</a></li>
     <li><a href="/login">Sign in</a></li>
     <li><a href="/logout">Exit</a></li>
@@ -43,13 +42,15 @@
                         <h3>${work.category}</h3>
                     </div>
 
-
+                <c:if test="${countRating >=1}">
                     <div class="container">
                         <h4> number of ratings - ${countRating}</h4>
                     </div>
                     <div class="container">
                         <h4>arithmetic - ${arithmetic}</h4>
                     </div>
+                </c:if>
+
 
                 </div>
                 <div class="col-xs-12  col-xl-9">

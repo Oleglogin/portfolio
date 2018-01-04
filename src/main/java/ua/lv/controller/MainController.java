@@ -18,6 +18,8 @@ public class MainController {
 
     @Autowired
     WorkService workService;
+    @Autowired
+    UserService userService;
 
 
 
@@ -27,6 +29,8 @@ public class MainController {
         model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
+        model.addAttribute("allUsers",userService.AllUsers());
+        model.addAttribute("allWorks",workService.findAllWorks());
         return "work";
     }
 

@@ -15,6 +15,9 @@ public class Rating {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Work work;
 
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private User user;
+
     public Rating() {
     }
 
@@ -45,5 +48,13 @@ public class Rating {
 
     public void setWork(Work work) {
         this.work = work;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

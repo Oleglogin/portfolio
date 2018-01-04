@@ -21,5 +21,7 @@ public interface WorkDAO extends JpaRepository<Work, Integer> {
 
     @Query("from Work work where work.category=:category")
     List<Work> categoryWorks(@Param("category") String category);
+    @Query("select count (work.id) from Work work")
+    int Allworks();
 
 }

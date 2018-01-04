@@ -27,23 +27,16 @@ public class RatingController {
     UserService userService;
     @Autowired
     WorkService workService;
-    @RequestMapping(value = "ratingAdd/{work.id}", method = RequestMethod.POST)
+    @RequestMapping(value = "ratingAdd/{work.id}/{currentUser.id}", method = RequestMethod.POST)
     public String addRating(@ModelAttribute("emptyRating") Rating rating,
                             Model model,Principal principal,
-                            @PathVariable("work.id") int id){
-//        String principalName = principal.getName();
-//        User byUsername = userService.findByUserName(principalName);
-//        model.addAttribute("currentUser", byUsername);
-//        model.addAttribute("workList", workService.workList());
-//        model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
-//        model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
-//        model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
-//        model.addAttribute("emptyRating", new Rating());
-
+                            @PathVariable("work.id") int id,
+                            @PathVariable("currentUser.id") int userId){
         Work byWorkId = workService.getWorkById(id);
+        User byUserId = userService.getUserById(userId);
         rating.setWork(byWorkId);
+        rating.setUser(byUserId);
         ratingService.addRating(rating);
-//        model.addAttribute("countRating", ratingService.countRating(byWorkId.getId()));
         return "redirect:/work";
     }
 }

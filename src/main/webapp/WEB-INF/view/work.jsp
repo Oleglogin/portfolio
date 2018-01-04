@@ -5,7 +5,7 @@
 
 <div style="background: gainsboro">
     <ul class="menu">
-        <li><a href="">LoginStudio</a></li>
+        <li><a href="/work">LoginStudio</a></li>
         <li><a href="">Company</a>
             <ul>
                 <li><a href="">one</a></li>
@@ -17,13 +17,14 @@
         </li>
         <li>
             <c:if test="${!empty currentUser}">
-                <a href="/myWorks">Discover</a>
+                <a href="/myWorks">${currentUser.username} Discover</a>
             </c:if>
         </li>
         <li><a href="">Galery</a></li>
         <li><a href="/registration">Sign up</a></li>
         <li><a href="/login">Sign in</a></li>
         <li><a href="/logout">Exit</a></li>
+
     </ul>
 
     <div class="container-fluid">
@@ -37,7 +38,7 @@
                                 <h5><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a>      - ${work.workName}</h5>
 
 
-                            <form:form action="ratingAdd/${work.id}"  modelAttribute="emptyRating">
+                            <form:form action="ratingAdd/${work.id}/${currentUser.id}"  modelAttribute="emptyRating">
                                 <c:if test="${currentUser != null}">
                                     <form:select path="value">
                                         <option>2</option>
@@ -86,8 +87,12 @@
                         }
                     });
                 </script>
-
+<br>
+<br>
+<br>
+<br>
                 <h5> ${allUsers}  registered users</h5>
+                <h5> ${allWorks}  registered works</h5>
 
 
 

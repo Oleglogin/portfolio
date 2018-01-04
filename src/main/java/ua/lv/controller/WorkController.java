@@ -43,6 +43,7 @@ public class WorkController {
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
         model.addAttribute("emptyRating", new Rating());
         model.addAttribute("allUsers",userService.AllUsers());
+        model.addAttribute("allWorks",workService.findAllWorks());
         return "/work";
     }
 
@@ -62,13 +63,17 @@ public class WorkController {
         Work byWorkId = workService.getWorkById(id);
         rating.setWork(byWorkId);
         ratingService.addRating(rating);
-        model.addAttribute("countRating", ratingService.countRating(byWorkId.getId()));
+        model.addAttribute("countRating", ratingService.countRating(byWorkId.getId())-1);
         model.addAttribute("sumRating", ratingService.sunRating(byWorkId.getId()));
+
         double a = ratingService.sunRating(byWorkId.getId());
-        double b = ratingService.countRating(byWorkId.getId());
-        double arit = a/b;
-        double arithmetic = new BigDecimal(arit).setScale(1, RoundingMode.UP).doubleValue();
-        model.addAttribute("arithmetic",arithmetic);
+        double b = ratingService.countRating(byWorkId.getId())-1;
+        if(b >=1){
+            double arit = a/b;
+            double arithmetic = new BigDecimal(arit).setScale(1, RoundingMode.UP).doubleValue();
+            model.addAttribute("arithmetic",arithmetic);
+        }
+
 
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);

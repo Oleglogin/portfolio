@@ -3,7 +3,7 @@
 <%@include file="tmp/header.jsp"%>
 <div  style="background: gainsboro">
     <ul class="menu">
-        <li><a href="">${currentUser.username} Discover</a></li>
+        <li><a href="/work">LoginStudio</a></li>
         <li><a href="">Company</a>
             <ul>
                 <li><a href="">one</a></li>
@@ -13,7 +13,8 @@
                 <li><a href="">five</a></li>
             </ul>
         </li>
-        <li><a href="/work">Main</a></li>
+        <li><a href="">${currentUser.username} Discover</a></li>
+
         <li><a href="">Galery</a></li>
         <li><a href="/registration">Sign up</a></li>
 
