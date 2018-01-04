@@ -23,4 +23,8 @@ public class RatingServiceImpl implements RatingService {
     public int countRating(int id) {
         return ratingDAO.findAllCountRating(id);
     }
+
+    public int sunRating(int id) {
+        return ratingDAO.sumAllRating(id);
+    }
 }

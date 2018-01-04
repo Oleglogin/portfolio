@@ -9,4 +9,6 @@ public interface RatingService {
     void addRating(Rating rating);
 
     int countRating(int id);
+
+    int sunRating(int id);
 }

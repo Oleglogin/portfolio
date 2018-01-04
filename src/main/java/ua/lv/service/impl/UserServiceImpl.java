@@ -55,4 +55,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         return findByUserName(username);
     }
 
+    public int AllUsers() {
+        return userDAO.findAllUsers();
+    }
 }

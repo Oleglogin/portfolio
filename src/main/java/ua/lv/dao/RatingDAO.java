@@ -12,4 +12,7 @@ public interface RatingDAO extends JpaRepository<Rating,Integer> {
 
     @Query("select count (rating.id) from Rating rating where rating.work.id=:id")
     int findAllCountRating(@Param("id") int id);
+
+    @Query("select sum (rating.value) from Rating rating where rating.work.id=:id")
+    int sumAllRating(@Param("id") int id);
 }

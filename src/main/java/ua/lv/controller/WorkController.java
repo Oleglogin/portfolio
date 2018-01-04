@@ -15,6 +15,8 @@ import ua.lv.service.UserService;
 import ua.lv.service.WorkService;
 
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.Principal;
 import java.util.List;
 
@@ -40,6 +42,7 @@ public class WorkController {
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
         model.addAttribute("emptyRating", new Rating());
+        model.addAttribute("allUsers",userService.AllUsers());
         return "/work";
     }
 
@@ -54,13 +57,23 @@ public class WorkController {
     }
 
     @RequestMapping(value = "/workData/{id}", method = RequestMethod.GET)
-    public String workData(@PathVariable("id") int id, Model model,@ModelAttribute("emptyRating") Rating rating){
+    public String workData(@PathVariable("id") int id, Model model,@ModelAttribute("emptyRating") Rating rating,Principal principal){
         model.addAttribute("work", workService.getWorkById(id));
         Work byWorkId = workService.getWorkById(id);
         rating.setWork(byWorkId);
         ratingService.addRating(rating);
         model.addAttribute("countRating", ratingService.countRating(byWorkId.getId()));
-        return "workData";
+        model.addAttribute("sumRating", ratingService.sunRating(byWorkId.getId()));
+        double a = ratingService.sunRating(byWorkId.getId());
+        double b = ratingService.countRating(byWorkId.getId());
+        double arit = a/b;
+        double arithmetic = new BigDecimal(arit).setScale(1, RoundingMode.UP).doubleValue();
+        model.addAttribute("arithmetic",arithmetic);
+
+        String principalName = principal.getName();
+        User byUsername = userService.findByUserName(principalName);
+        model.addAttribute("currentUser", byUsername);
+        return "/workData";
     }
 
     @RequestMapping(value = "/userWork/{id}", method = RequestMethod.GET)
@@ -115,6 +128,7 @@ public class WorkController {
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
         model.addAttribute("workList",workService.workCategory(category));
+        model.addAttribute("emptyRating", new Rating());
         return "/work";
     }
 }

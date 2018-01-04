@@ -1,11 +1,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@include file="tmp/header.jsp"%>
-<div class="container-fluid align-items-center pt-5" style="background: gainsboro">
-    <h2>${currentUser.username} Discover</h2>
+<div  style="background: gainsboro">
+    <ul class="menu">
+        <li><a href="">${currentUser.username} Discover</a></li>
+        <li><a href="">Company</a>
+            <ul>
+                <li><a href="">one</a></li>
+                <li><a href="">two</a></li>
+                <li><a href="">free</a></li>
+                <li><a href="">four</a></li>
+                <li><a href="">five</a></li>
+            </ul>
+        </li>
+        <li><a href="/work">Main</a></li>
+        <li><a href="">Galery</a></li>
+        <li><a href="/registration">Sign up</a></li>
+
+        <li><a href="/login">Sign in</a></li>
+        <li><a href="/logout">Exit</a></li>
+    </ul>
+
     <br>
     <br>
-</div>
+
 
 <div class="container-fluid">
     <div class="row">
@@ -95,154 +113,6 @@
 
     </div>
 </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<div class="container">--%>
-    <%--<div class=" color-rect-border">--%>
-        <%--<div class="row">--%>
-            <%--<c:forEach items="${workList}" var="work">--%>
-                <%--<c:if test="${currentUser.id == work.user.id}">--%>
-                    <%--<div class="col-md-3" >--%>
-                        <%--<img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail "/>--%>
-                        <%--<a href="<c:url value='/workRemove/${work.id}'/>">Delete</a>--%>
-                        <%--<a href="<c:url value='/workEdit/${work.id}'/>">Edit</a>--%>
-                        <%--<br>--%>
-                        <%--<br>--%>
-                        <%--<br>--%>
-                    <%--</div>--%>
-                <%--</c:if>--%>
-            <%--</c:forEach>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-<%--<c:url value="/work/add" var="addWork"/>--%>
-<%--<div class="container">--%>
-    <%--<div class="container-fluid color-rect-border">--%>
-        <%--<div class="row">--%>
-            <%--<form:form action="${addWork}"  modelAttribute="emptyWork" enctype="multipart/form-data">--%>
-                <%--<form:input path="id" readonly="true"/>--%>
-                <%--<form:input path="workName"/>--%>
-                <%--<form:select path="category">--%>
-                    <%--<option>Architecture</option>--%>
-                    <%--<option>Design</option>--%>
-                    <%--<option>3D Model</option>--%>
-                <%--</form:select>--%>
-                <%--<input type="file" name="workImg" formenctype="multipart/form-data">--%>
-                <%--<input type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>--%>
-                <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-            <%--</form:form>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-
-<%--&lt;%&ndash;<c:if test="${!empty usersList}">&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<table class="table">&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>ID</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>Login</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>Password</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>Email</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>Delete</td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<td>Edit</td>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<c:forEach items="${usersList}" var="user">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td>${user.id}</td>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td>${user.username}</td>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td>${user.password}</td>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td>${user.email}</td>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td><a href="<c:url value='/userRemove/${user.id}'/>">Delete</a></td>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<td><a href="<c:url value='/userEdit/${user.id}'/>">Edit</a></td>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</c:forEach>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;</table>&ndash;%&gt;--%>
-<%--&lt;%&ndash;</c:if>&ndash;%&gt;--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<br>--%>
-
-
-<%--<table class="table">--%>
-    <%--<tr>--%>
-        <%--<td>ID</td>--%>
-        <%--<td>First Name</td>--%>
-        <%--<td>Last Name</td>--%>
-        <%--<td>country</td>--%>
-        <%--<td>city</td>--%>
-        <%--<td>ava</td>--%>
-        <%--<td>category</td>--%>
-        <%--<td>user</td>--%>
-        <%--<td>Edit</td>--%>
-    <%--</tr>--%>
-    <%--<c:forEach items="${accountList}" var="account">--%>
-        <%--<c:if test="${currentUser.id == account.user.id}">--%>
-            <%--<tr>--%>
-                <%--<td>${account.id}</td>--%>
-                <%--<td>${account.firstName}</td>--%>
-                <%--<td>${account.lastName}</td>--%>
-                <%--<td>${account.country}</td>--%>
-                <%--<td>${account.city}</td>--%>
-                <%--<td><img src="${account.avatar}"width="30" height="30" class="rounded-circle" alt=""></td>--%>
-                <%--<td>${account.category}</td>--%>
-                <%--<td>${account.user.username}</td>--%>
-                <%--<td><a href="<c:url value='/editAccount/${account.id}'/>">Edit</a></td>--%>
-            <%--</tr>--%>
-        <%--</c:if>--%>
-
-    <%--</c:forEach>--%>
-<%--</table>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<c:url value="/saveAccount" var="addAcc"/>--%>
-
-<%--<form:form modelAttribute="emptyAccount" action="${addAcc}" method="post" enctype="multipart/form-data">--%>
-    <%--<form:input type="text" path="firstName" placeholder="Enter first name"/>--%>
-    <%--<form:input type="text" path="lastName"  placeholder="Enter last name"/>--%>
-    <%--<form:input type="text" path="country"  placeholder="Enter country"/>--%>
-    <%--<form:input type="text" path="city"  placeholder="Enter city"/>--%>
-    <%--<form:select path="category" >--%>
-        <%--<option>Sport</option>--%>
-        <%--<option>Power up my skills</option>--%>
-        <%--<option>Studying</option>--%>
-        <%--<option>Improving myself</option>--%>
-        <%--<option>Success</option>--%>
-    <%--</form:select>--%>
-    <%--<input type="file" name="avatar" formenctype="multipart/form-data"/>--%>
-    <%--<br>--%>
-    <%--<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>--%>
-    <%--<input type="submit" value="Ok">--%>
-<%--</form:form>--%>
 <%@include file="tmp/footer.jsp"%>
