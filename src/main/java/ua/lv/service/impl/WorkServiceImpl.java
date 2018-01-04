@@ -52,4 +52,5 @@ public class WorkServiceImpl implements WorkService {
     public int findAllByCategory(String category) {
         return workDAO.findAllByCategory(category);
     }
+
 }

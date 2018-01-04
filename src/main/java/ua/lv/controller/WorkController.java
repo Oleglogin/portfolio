@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.lv.entity.Account;
+import ua.lv.entity.Rating;
 import ua.lv.entity.User;
 import ua.lv.entity.Work;
 import ua.lv.service.AccountService;
@@ -35,6 +36,7 @@ public class WorkController {
         model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
+        model.addAttribute("emptyRating", new Rating());
         return "/work";
     }
 
@@ -108,9 +110,4 @@ public class WorkController {
         model.addAttribute("workList",workService.workCategory(category));
         return "/work";
     }
-
-
-
-
-
 }

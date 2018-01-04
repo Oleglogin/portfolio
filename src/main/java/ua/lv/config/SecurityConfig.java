@@ -93,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .usernameParameter("username")
                 .passwordParameter("password").and()
                 .logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/work")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
                 .csrf();
     }

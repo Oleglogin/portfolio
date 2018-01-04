@@ -36,6 +36,22 @@
                             <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
                         </div>
                         <h4><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a></h4>
+
+                        <form:form action="ratingAdd/${work.id}"  modelAttribute="emptyRating">
+                            <c:if test="${currentUser != null}">
+                                <form:select path="value">
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                </form:select>
+                                <input type="submit">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </c:if>
+                        </form:form>
+                        <%--<h1>${currentWork}</h1>--%>
+                        <%--<h2>${countRating}</h2>--%>
                         <br>
                         <br>
                         <br>

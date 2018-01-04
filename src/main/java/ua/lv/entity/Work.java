@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Entity
 public class Work {
@@ -16,6 +17,8 @@ public class Work {
     private String category;
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private User user;
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "work")
+    private List<Rating> ratings;
 
     public Work() {
     }
@@ -71,5 +74,13 @@ public class Work {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

@@ -21,4 +21,5 @@ public interface WorkDAO extends JpaRepository<Work, Integer> {
 
     @Query("from Work work where work.category=:category")
     List<Work> categoryWorks(@Param("category") String category);
+
 }
