@@ -65,6 +65,7 @@ public class WorkController {
         ratingService.addRating(rating);
         model.addAttribute("countRating", ratingService.countRating(byWorkId.getId())-1);
         model.addAttribute("sumRating", ratingService.sunRating(byWorkId.getId()));
+        model.addAttribute("userRating", ratingService.findUsersRating(byWorkId.getId()));
 
         double a = ratingService.sunRating(byWorkId.getId());
         double b = ratingService.countRating(byWorkId.getId())-1;

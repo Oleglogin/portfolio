@@ -49,6 +49,13 @@
                     <div class="container">
                         <h4>arithmetic - ${arithmetic}</h4>
                     </div>
+                    <div class="container">
+                        <c:forEach items="${userRating}" var="UR">
+                            <c:if test="${UR.value > 0}">
+                                <h4>user  ${UR.user.id} like ${UR.value} ball</h4>
+                            </c:if>
+                        </c:forEach>
+                    </div>
                 </c:if>
 
 

@@ -7,6 +7,8 @@ import ua.lv.dao.RatingDAO;
 import ua.lv.entity.Rating;
 import ua.lv.service.RatingService;
 
+import java.util.List;
+
 /**
  * Created by User on 03.01.2018.
  */
@@ -26,5 +28,9 @@ public class RatingServiceImpl implements RatingService {
 
     public int sunRating(int id) {
         return ratingDAO.sumAllRating(id);
+    }
+
+    public List<Rating> findUsersRating(int id) {
+        return ratingDAO.findUsersRating(id);
     }
 }
