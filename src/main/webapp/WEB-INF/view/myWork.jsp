@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@include file="tmp/header.jsp"%>
 <div  style="background: gainsboro">
     <ul class="menu">
@@ -31,9 +32,12 @@
 
         <div class="col-xs-12  col-xl-3">
             <div class="container align-items-center pt-5">
-                <c:if test="${countAcc < 1}">
-                   <h2><a href="account">Tell about self</a></h2>
-                </c:if>
+                <div class="container field">
+                    <c:if test="${countAcc < 1}">
+                        <h2><a href="account">Tell about self</a></h2>
+                    </c:if>
+                </div>
+
                 <c:forEach items="${accountList}" var="account">
                     <c:if test="${currentUser.id == account.user.id}">
                         <div class="container"><img src="${account.avatar}"width="180" height="180"  alt=""></div>
@@ -44,6 +48,8 @@
                         <div class="container"><h2><a href="/editAccount/${account.id}" target="_blank">Edit</a></h2></div>
                     </c:if>
                 </c:forEach>
+
+
 
                 <div class="container-fluid">
                     <canvas id="myChart"></canvas>
@@ -72,6 +78,13 @@
                         });
                     </script>
                 </div>
+                <br>
+                <br>
+                <br>
+                <div class="col-4 text-center">
+                    <span class="step">${daysWithUs}</span>
+                    day(s) with us
+                </div>
             </div>
         </div>
 
@@ -96,14 +109,37 @@
                     <div class="col-xs-12 col-sm-6 col-md-4 col-xl-3">
                         <c:url value="/work/add" var="addWork"/>
                         <form:form action="${addWork}"  modelAttribute="emptyWork" enctype="multipart/form-data">
-                            <form:input path="workName"/>
-                            <form:select path="category">
-                                <option>Architecture</option>
-                                <option>Design</option>
-                                <option>3D_Model</option>
-                            </form:select>
-                            <input type="file" name="workImg" formenctype="multipart/form-data">
-                            <input type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <form:input path="workName" class="form-control input-goal" id="workName" placeholder="Name"/>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <form:select path="category" class="form-control input-goal" id="category">
+                                            <option>Architecture</option>
+                                            <option>Design</option>
+                                            <option>3D_Model</option>
+                                        </form:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="file" name="workImg" class="form-control-file" formenctype="multipart/form-data" id="exampleFormControlFile1">
+                            </div>
+
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group col-md-8">
+                                        <input type="submit" class="btn btn-primary">
+                                    </div>
+                                    <%--<div class="form-group col-md-4">--%>
+                                        <%--<button type="reset" class="btn btn-outline-danger">Reset</button>--%>
+                                    <%--</div>--%>
+                                    <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/>
+                                </div>
+                            </div>
+
                             <form:input type="hidden" path="id" readonly="true"/>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form:form>

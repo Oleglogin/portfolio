@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,8 @@ public class Work {
     private User user;
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "work")
     private List<Rating> ratings;
+
+    private Date dateOfDownladImg = new Date();
 
     public Work() {
     }
@@ -82,5 +85,13 @@ public class Work {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public Date getDateOfDownladImg() {
+        return dateOfDownladImg;
+    }
+
+    public void setDateOfDownladImg(Date dateOfDownladImg) {
+        this.dateOfDownladImg = dateOfDownladImg;
     }
 }

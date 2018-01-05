@@ -24,7 +24,6 @@
         <li><a href="/registration">Sign up</a></li>
         <li><a href="/login">Sign in</a></li>
         <li><a href="/logout">Exit</a></li>
-
     </ul>
 
     <div class="container-fluid">
@@ -36,22 +35,46 @@
                         <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2" >
                             <a href="/workData/${work.id}"><img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail"/></a>
                                 <h5><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a>      - ${work.workName}</h5>
+                            <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
 
 
-                            <form:form action="ratingAdd/${work.id}/${currentUser.id}"  modelAttribute="emptyRating">
-                                <c:if test="${currentUser != null}">
-                                    <form:select path="value">
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>10</option>
-                                    </form:select>
-                                    <input type="submit" value=" ok ">
-                                    <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                </c:if>
-                            </form:form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <c:if test="${currentUser != null}">
+                                <form:form action="ratingAdd/${work.id}/${currentUser.id}"  modelAttribute="emptyRating">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="form-group col-md-8">
+                                                <form:select path="value" class="form-control input-goal">
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>10</option>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <input type="submit" value=" ok " class="btn btn-primary">
+                                            </div>
+
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                        </div>
+                                    </div>
+                                </form:form>
+                            </c:if>
                             <br>
                             <br>
                             <br>
@@ -93,9 +116,6 @@
 <br>
                 <h5> ${allUsers}  registered users</h5>
                 <h5> ${allWorks}  registered works</h5>
-
-
-
             </div>
         </div>
     </div>

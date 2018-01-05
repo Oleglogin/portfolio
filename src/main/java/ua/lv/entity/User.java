@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,6 +36,8 @@ public class User implements UserDetails {
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "user")
     private List<Rating> ratings;
+
+    private Date dateOfRegistration = new Date();
 
     public User() {
     }
@@ -166,6 +169,14 @@ public class User implements UserDetails {
 
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public Date getDateOfRegistration() {
+        return dateOfRegistration;
+    }
+
+    public void setDateOfRegistration(Date dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 
     @Override

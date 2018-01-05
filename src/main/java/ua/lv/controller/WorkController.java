@@ -1,11 +1,11 @@
 package ua.lv.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ua.lv.entity.Account;
+
 import ua.lv.entity.Rating;
 import ua.lv.entity.User;
 import ua.lv.entity.Work;
@@ -18,7 +18,9 @@ import ua.lv.service.WorkService;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class WorkController {
@@ -122,6 +124,13 @@ public class WorkController {
         model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
         model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
         model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
+
+
+        Date date = new Date();
+        Date date1 = byUserName.getDateOfRegistration();
+        long diff = date.getTime() - date1.getTime();
+        long days = TimeUnit.MILLISECONDS.toDays(diff)+1;
+        model.addAttribute("daysWithUs", days);
         return "myWork";
     }
 

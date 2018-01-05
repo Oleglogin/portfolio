@@ -41,6 +41,9 @@
                     <div class="container">
                         <h3>${work.category}</h3>
                     </div>
+                    <div class="container">
+                        <h3>${work.dateOfDownladImg}</h3>
+                    </div>
 
                 <c:if test="${countRating >=1}">
                     <div class="container">
@@ -52,7 +55,7 @@
                     <div class="container">
                         <c:forEach items="${userRating}" var="UR">
                             <c:if test="${UR.value > 0}">
-                                <h4>user  ${UR.user.id} like ${UR.value} ball</h4>
+                                <h4> ${UR.user.username} - ${UR.value}  </h4>
                             </c:if>
                         </c:forEach>
                     </div>
