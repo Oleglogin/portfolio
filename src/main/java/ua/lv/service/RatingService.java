@@ -15,4 +15,6 @@ public interface RatingService {
     int sunRating(int id);
 
     List<Rating> findUsersRating(int id);
+
+    List<Rating> listRating();
 }

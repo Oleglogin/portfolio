@@ -1,11 +1,9 @@
 package ua.lv.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import ua.lv.entity.Rating;
 import ua.lv.entity.User;
 import ua.lv.entity.Work;
@@ -13,13 +11,11 @@ import ua.lv.service.AccountService;
 import ua.lv.service.RatingService;
 import ua.lv.service.UserService;
 import ua.lv.service.WorkService;
-
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -46,6 +42,10 @@ public class WorkController {
         model.addAttribute("emptyRating", new Rating());
         model.addAttribute("allUsers",userService.AllUsers());
         model.addAttribute("allWorks",workService.findAllWorks());
+
+        model.addAttribute("ratingList", ratingService.listRating());
+
+
         return "/work";
     }
 
@@ -71,13 +71,11 @@ public class WorkController {
 
         double a = ratingService.sunRating(byWorkId.getId());
         double b = ratingService.countRating(byWorkId.getId())-1;
-        if(b >=1){
+        if(b >= 1){
             double arit = a/b;
             double arithmetic = new BigDecimal(arit).setScale(1, RoundingMode.UP).doubleValue();
             model.addAttribute("arithmetic",arithmetic);
         }
-
-
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
@@ -89,7 +87,7 @@ public class WorkController {
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-        model.addAttribute("works", workService.userWork(id));
+        model.addAttribute("work", workService.userWork(id));
         return "/userWork";
     }
 
@@ -121,11 +119,9 @@ public class WorkController {
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.workList());
         model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
-        model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
-        model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
-        model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
-
-
+//        model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
+//        model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
+//        model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
         Date date = new Date();
         Date date1 = byUserName.getDateOfRegistration();
         long diff = date.getTime() - date1.getTime();
@@ -144,6 +140,38 @@ public class WorkController {
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
         model.addAttribute("workList",workService.workCategory(category));
         model.addAttribute("emptyRating", new Rating());
+        model.addAttribute("allUsers",userService.AllUsers());
+        model.addAttribute("allWorks",workService.findAllWorks());
+        model.addAttribute("categoryAccount",accountService.categoryAccount(category));
         return "/work";
+    }
+
+    @RequestMapping(value = "/workFindOfDate")
+    public String workFindOfDate(Principal principal, Model model) {
+        String principalName = principal.getName();
+        User byUsername = userService.findByUserName(principalName);
+        model.addAttribute("currentUser", byUsername);
+
+        ArrayList<Work> dateWork = new ArrayList<>();
+        dateWork.addAll(workService.workList());
+        dateWork.sort((o1, o2) -> {
+            if (o1.getDateOfDownladImg().getTime() == o2.getDateOfDownladImg().getTime()) {
+                return 0;
+            } else if (o1.getDateOfDownladImg().getTime() < o2.getDateOfDownladImg().getTime()) {
+                return 1;
+            } else return -1;
+        });
+        model.addAttribute("workList", dateWork);
+
+
+        model.addAttribute("CategoryDesign", workService.findAllByCategory("Design"));
+        model.addAttribute("CategoryArchitecture", workService.findAllByCategory("Architecture"));
+        model.addAttribute("Category3D_Model", workService.findAllByCategory("3D_Model"));
+        model.addAttribute("emptyRating", new Rating());
+        model.addAttribute("allUsers", userService.AllUsers());
+        model.addAttribute("allWorks", workService.findAllWorks());
+
+        model.addAttribute("ratingList", ratingService.listRating());
+        return "work";
     }
 }

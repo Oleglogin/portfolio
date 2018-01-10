@@ -37,5 +37,7 @@ public class AccountServiceImpl implements AccountService {
         return accountDAO.findAllCountAccount(id);
     }
 
-
+    public List<Account> categoryAccount(String category) {
+        return accountDAO.categoryAccount(category);
+    }
 }

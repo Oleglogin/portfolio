@@ -3,12 +3,12 @@
 <%@include file="tmp/header.jsp"%>
 
 
-<div style="background: gainsboro">
+<div style="background: #31424f">
     <ul class="menu">
         <li><a href="/work">LoginStudio</a></li>
-        <li><a href="">Company</a>
+        <li><a href="">find</a>
             <ul>
-                <li><a href="">one</a></li>
+                <li><a href="/workFindOfDate">date</a></li>
                 <li><a href="">two</a></li>
                 <li><a href="">free</a></li>
                 <li><a href="">four</a></li>
@@ -29,35 +29,29 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-xs-12  col-xl-10">
+            <div class="col-xs-12 col-xl-1">
+                op
+            </div>
+
+            <div class="col-xs-12  col-xl-9">
                 <div class="row">
                     <c:forEach items="${workList}" var="work">
                         <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2" >
-                            <a href="/workData/${work.id}"><img src="${work.workImg}" alt="img01" class="img-responsive img-thumbnail"/></a>
-                                <h5><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a>      - ${work.workName}</h5>
-                            <a href="/categoryList/${work.category}" target="_blank">${work.category}</a>
 
+                            <div class="img-wrap">
+                                <a href="/workData/${work.id}"><img src="${work.workImg}" alt="Card image" class="img-responsive img-thumbnail"/></a>
+                                <span><a href="/userWork/${work.user.id}" target="_blank">${work.user.username}</a></span>
+                                <p><a href="/categoryList/${work.category}" target="_blank">${work.category}</a></p>
+                            </div>
+                            <div class="imgname">
+                                <p>${work.workName}</p>
+                            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            <c:if test="${currentUser != null}">
+                            <c:if test="${currentUser != null && work.user.id != currentUser.id}">
                                 <form:form action="ratingAdd/${work.id}/${currentUser.id}"  modelAttribute="emptyRating">
                                     <div class="container-fluid">
                                         <div class="row">
-                                            <div class="form-group col-md-8">
+                                            <div class="form-group col-md-3">
                                                 <form:select path="value" class="form-control input-goal">
                                                     <option>2</option>
                                                     <option>3</option>
@@ -66,8 +60,8 @@
                                                     <option>10</option>
                                                 </form:select>
                                             </div>
-                                            <div class="form-group col-md-4">
-                                                <input type="submit" value=" ok " class="btn btn-primary">
+                                            <div class="form-group col-md-2">
+                                                <input type="submit" value="ok" class="btn btn-primary">
                                             </div>
 
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -77,6 +71,11 @@
                             </c:if>
                             <br>
                             <br>
+                            <%--<c:forEach items="${ratingList}" var="rating">--%>
+                                <%--<c:if test="${work.id==rating.work.id && rating.value != 0}">--%>
+                                    <%--${rating.value}--%>
+                                <%--</c:if>--%>
+                            <%--</c:forEach>--%>
                             <br>
                             <br>
                         </div>
@@ -116,6 +115,9 @@
 <br>
                 <h5> ${allUsers}  registered users</h5>
                 <h5> ${allWorks}  registered works</h5>
+                <c:forEach items="${categoryAccount}" var="account">
+                    <a href="userWork/${account.user.id}" target="_blank">${account.user.username}</a>
+                </c:forEach>
             </div>
         </div>
     </div>

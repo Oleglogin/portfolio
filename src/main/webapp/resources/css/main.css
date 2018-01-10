@@ -462,3 +462,51 @@ ul.menu>li:hover>ul>li>a:hover {
     background-color: transparent;
     color: #c1deff;
 }
+
+.img-wrap {
+    position: relative;
+}
+.img-wrap span{
+    position: absolute;
+    left:8%;
+    bottom: 80%;
+    width: 100%;
+    text-shadow: 2px 2px 2px black;
+    font-size: 1.3em;
+}
+.img-wrap p {
+    position: absolute;
+    right: -57%;
+    bottom: -5%;
+    width: 100%;
+    color: seagreen;
+    text-shadow: 2px 2px 4px black;
+    font-size: 1.25em;
+}
+
+.imgname p {
+    left:80%;
+    text-shadow: 2px 2px 4px black;
+    font-size: 1.25em;
+    color: #d0e2ff;
+}
+.myimg-wrap {
+    position: relative;
+}
+.myimg-wrap p {
+    position: absolute;
+    left: 60%;
+    bottom: -5%;
+    width: 100%;
+    color: seagreen;
+    text-shadow: 2px 2px 4px black;
+    font-size: 1.25em;
+}
+.myimg-wrap span{
+    position: absolute;
+    left:8%;
+    bottom: 80%;
+    width: 100%;
+    text-shadow: 2px 2px 2px black;
+    font-size: 1.3em;
+}

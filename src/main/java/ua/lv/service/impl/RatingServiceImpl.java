@@ -33,4 +33,8 @@ public class RatingServiceImpl implements RatingService {
     public List<Rating> findUsersRating(int id) {
         return ratingDAO.findUsersRating(id);
     }
+
+    public List<Rating> listRating() {
+        return ratingDAO.findAll();
+    }
 }

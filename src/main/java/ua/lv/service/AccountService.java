@@ -18,4 +18,5 @@ public interface AccountService {
 
     int CountAccount(int id);
 
+    List<Account> categoryAccount(String category);
 }

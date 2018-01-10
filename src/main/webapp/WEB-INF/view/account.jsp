@@ -69,7 +69,6 @@
 
 
 
-
     <%--<section class="container" >--%>
         <%--<div class="row align-items-center" style="height:700px">--%>
             <%--<div class="col-8">--%>

@@ -1,5 +1,7 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="tmp/header.jsp"%>
-<div style="background: gainsboro">
+<div style="background: #31424f">
 <ul class="menu">
     <li><a href="/work">LoginStudio</a></li>
     <li><a href="">Company</a>
@@ -42,7 +44,7 @@
                         <h3>${work.category}</h3>
                     </div>
                     <div class="container">
-                        <h3>${work.dateOfDownladImg}</h3>
+                       <span  style="color: firebrick;">${work.dateOfDownladImg}</span>
                     </div>
 
                 <c:if test="${countRating >=1}">
