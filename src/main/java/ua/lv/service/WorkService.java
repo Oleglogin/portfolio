@@ -18,5 +18,7 @@ public interface WorkService {
     int findAllWorks();
 
 
+    List<Work> sortList();
+    List<Work> sortListDate();
 
 }

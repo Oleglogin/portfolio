@@ -25,7 +25,7 @@ public class MainController {
 
     @GetMapping("/")
     public String toWorkPage( Model model){
-        model.addAttribute("workList", workService.workList());
+        model.addAttribute("workList", workService.sortList());
         model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));

@@ -16,6 +16,8 @@ import java.math.RoundingMode;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -35,17 +37,14 @@ public class WorkController {
         String principalName = principal.getName();
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
-        model.addAttribute("workList", workService.workList());
+        model.addAttribute("workList",workService.sortList());
         model.addAttribute("CategoryDesign", workService.findAllByCategory( "Design"));
         model.addAttribute("CategoryArchitecture", workService.findAllByCategory( "Architecture"));
         model.addAttribute("Category3D_Model", workService.findAllByCategory( "3D_Model"));
         model.addAttribute("emptyRating", new Rating());
         model.addAttribute("allUsers",userService.AllUsers());
         model.addAttribute("allWorks",workService.findAllWorks());
-
         model.addAttribute("ratingList", ratingService.listRating());
-
-
         return "/work";
     }
 
@@ -117,7 +116,7 @@ public class WorkController {
         model.addAttribute("accountList", accountService.listAccount());
         model.addAttribute("currentUser",byUserName);
         model.addAttribute("emptyWork", new Work());
-        model.addAttribute("workList", workService.workList());
+        model.addAttribute("workList", workService.sortList());
         model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
 //        model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
 //        model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
@@ -152,16 +151,7 @@ public class WorkController {
         User byUsername = userService.findByUserName(principalName);
         model.addAttribute("currentUser", byUsername);
 
-        ArrayList<Work> dateWork = new ArrayList<>();
-        dateWork.addAll(workService.workList());
-        dateWork.sort((o1, o2) -> {
-            if (o1.getDateOfDownladImg().getTime() == o2.getDateOfDownladImg().getTime()) {
-                return 0;
-            } else if (o1.getDateOfDownladImg().getTime() < o2.getDateOfDownladImg().getTime()) {
-                return 1;
-            } else return -1;
-        });
-        model.addAttribute("workList", dateWork);
+        model.addAttribute("workList", workService.workList());
 
 
         model.addAttribute("CategoryDesign", workService.findAllByCategory("Design"));

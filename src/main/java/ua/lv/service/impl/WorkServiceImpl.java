@@ -7,6 +7,9 @@ import ua.lv.dao.WorkDAO;
 import ua.lv.entity.Work;
 import ua.lv.service.WorkService;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -55,5 +58,27 @@ public class WorkServiceImpl implements WorkService {
 
     public int findAllWorks() {
         return workDAO.Allworks();
+    }
+
+    @Override
+    public List<Work> sortList() {
+        ArrayList<Work> sortList = new ArrayList<>();
+        sortList.addAll(workDAO.findAll());
+        sortList.sort((o1, o2) -> {
+            if (o1.getId() == o2.getId()) {
+                return 0;
+            } else if (o1.getId() < o2.getId()) {
+                return 1;
+            } else return -1;
+        });
+        return sortList;
+    }
+
+    @Override
+    public List<Work> sortListDate() {
+        ArrayList<Work> sortList = new ArrayList<>();
+        sortList.addAll(workDAO.findAll());
+
+        return null;
     }
 }

@@ -29,11 +29,9 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-xs-12 col-xl-1">
-                op
-            </div>
 
-            <div class="col-xs-12  col-xl-9">
+
+            <div class="col-xs-12  col-xl-10">
                 <div class="row">
                     <c:forEach items="${workList}" var="work">
                         <div class="col-xs-12 col-sm-6 col-md-4  col-xl-2" >
