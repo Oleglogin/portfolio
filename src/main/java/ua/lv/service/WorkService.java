@@ -19,6 +19,6 @@ public interface WorkService {
 
 
     List<Work> sortList();
-    List<Work> sortListDate();
+    List<Work> sortListRating();
 
 }

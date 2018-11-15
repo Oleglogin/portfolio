@@ -17,7 +17,7 @@ import ua.lv.service.WorkService;
 import java.security.Principal;
 
 /**
- * Created by User on 03.01.2018.
+ * Created by User on 03.01.2018.    16.11.18
  */
 @Controller
 public class RatingController {
@@ -29,7 +29,6 @@ public class RatingController {
     WorkService workService;
     @RequestMapping(value = "ratingAdd/{work.id}/{currentUser.id}", method = RequestMethod.POST)
     public String addRating(@ModelAttribute("emptyRating") Rating rating,
-                            Model model,Principal principal,
                             @PathVariable("work.id") int id,
                             @PathVariable("currentUser.id") int userId){
         Work byWorkId = workService.getWorkById(id);

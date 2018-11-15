@@ -71,11 +71,21 @@ public class WorkServiceImpl implements WorkService {
                 return 1;
             } else return -1;
         });
+//        workDAO.findAll().stream().sorted((p1, p2)-> {
+//            if (p1.getId() == p2.getId()) {
+//                return 0;
+//            } else if (p1.getId() < p2.getId()) {
+//                return 1;
+//            } else return -1;
+//        });
         return sortList;
     }
 
+
+
+
     @Override
-    public List<Work> sortListDate() {
+    public List<Work> sortListRating() {
         ArrayList<Work> sortList = new ArrayList<>();
         sortList.addAll(workDAO.findAll());
 
