@@ -17,7 +17,7 @@ import ua.lv.service.WorkService;
 import java.security.Principal;
 
 /**
- * Created by User on 03.01.2018.    16.11.18
+ * Created by User on 03.01.2018.
  */
 @Controller
 public class RatingController {
