@@ -57,7 +57,7 @@
                         <div class="form-group col-md-8">
                             <input type="submit" class="btn btn-primary" value="Save">
                         </div>
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     </div>
                 </form:form>
             </div>

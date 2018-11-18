@@ -42,7 +42,7 @@
     <br>
 
 </div>
-<div id="footer" style="background: #31424f"">
+<div id="footer" style="background: #31424f">
     <div class="pull-right">
         Developed by Login
     </div>
