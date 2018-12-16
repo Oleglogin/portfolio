@@ -113,8 +113,8 @@ public class WorkController {
     public String myWorks(Model model, Principal principal){
         String principalName = principal.getName();
         User byUserName= userService.findByUserName(principalName);
-        model.addAttribute("accountList", accountService.listAccount());
         model.addAttribute("currentUser",byUserName);
+        model.addAttribute("accountList", accountService.listAccount());
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.sortList());
         model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
