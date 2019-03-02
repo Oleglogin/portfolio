@@ -21,16 +21,19 @@ import java.util.Properties;
 public class DataConfig {
 
 
-    private String driver = "com.mysql.jdbc.Driver";
-    private String url = "jdbc:mysql://localhost/portfolio";
+//    private String driver = "com.mysql.jdbc.Driver";
+//    private String url = "jdbc:mysql://localhost/portfolio";
     private String username = "root";
     private String password = "1234";
+
+
+
 
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost/portfolio");
         dataSource.setUsername(username);
         dataSource.setPassword(password);
         return  dataSource;
