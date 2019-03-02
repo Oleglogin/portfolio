@@ -24,7 +24,7 @@
         <li><a href="/registration">Sign up</a></li>
         <li><a href="/login">Sign in</a></li>
         <li><a href="/logout">Exit</a></li>
-    </ul>
+    </ul>/
 
     <div class="container-fluid">
         <div class="row">
