@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService, UserDetailsService{
         return userDAO.findOne(id);
     }
 
-    public void delete(int id) {
+     public void delete(int id) {
         userDAO.delete(id);
     }
 
