@@ -118,9 +118,11 @@ public class WorkController {
         model.addAttribute("emptyWork", new Work());
         model.addAttribute("workList", workService.sortList());
         model.addAttribute("countAcc", accountService.CountAccount(byUserName.getId()));
+
 //        model.addAttribute("countCategoryDesign", workService.findAllByCategoryIs(byUserName.getId(), "Design"));
 //        model.addAttribute("countCategoryArchitecture", workService.findAllByCategoryIs(byUserName.getId(), "Architecture"));
 //        model.addAttribute("countCategory3D_Model", workService.findAllByCategoryIs(byUserName.getId(), "3D_Model"));
+
         Date date = new Date();
         Date date1 = byUserName.getDateOfRegistration();
         long diff = date.getTime() - date1.getTime();
